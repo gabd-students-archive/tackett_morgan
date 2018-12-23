@@ -11,7 +11,7 @@
 
 <meta name="author" content="Morgan Tackett" />
 
-<meta name="date" content="2018-12-22" />
+<meta name="date" content="2018-12-23" />
 
 <title>Hw03</title>
 
@@ -1760,7 +1760,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Hw03</h1>
 <h4 class="author"><em>Morgan Tackett</em></h4>
-<h4 class="date"><em>22 December 2018</em></h4>
+<h4 class="date"><em>23 December 2018</em></h4>
 
 </div>
 
@@ -1784,19 +1784,12 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGtuaXRyKVxubGlicmFyeSh4dGFibGUpXG5cbmBgYCJ9 -->
+<pre class="r"><code>library(tidyverse)
+library(knitr)
+library(xtable)
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXHUwMDFiWzMwbS0tIFx1MDAxYlsxbUF0dGFjaGluZyBwYWNrYWdlc1x1MDAxYlsyMm0gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHRpZHl2ZXJzZSAxLjIuMSAtLVx1MDAxYlszOW1cblx1MDAxYlszMG1cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bWdncGxvdDJcdTAwMWJbMzBtIDMuMS4wICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXB1cnJyICBcdTAwMWJbMzBtIDAuMi41XG5cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXRpYmJsZSBcdTAwMWJbMzBtIDEuNC4yICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bWRwbHlyICBcdTAwMWJbMzBtIDAuNy44XG5cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXRpZHlyICBcdTAwMWJbMzBtIDAuOC4yICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXN0cmluZ3JcdTAwMWJbMzBtIDEuMy4xXG5cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXJlYWRyICBcdTAwMWJbMzBtIDEuMy4wICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bWZvcmNhdHNcdTAwMWJbMzBtIDAuMy4wXHUwMDFiWzM5bVxuXHUwMDFiWzMwbS0tIFx1MDAxYlsxbUNvbmZsaWN0c1x1MDAxYlsyMm0gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHRpZHl2ZXJzZV9jb25mbGljdHMoKSAtLVxuXHUwMDFiWzMxbXhcdTAwMWJbMzBtIFx1MDAxYlszNG1kcGx5clx1MDAxYlszMG06Olx1MDAxYlszMm1maWx0ZXIoKVx1MDAxYlszMG0gbWFza3MgXHUwMDFiWzM0bXN0YXRzXHUwMDFiWzMwbTo6ZmlsdGVyKClcblx1MDAxYlszMW14XHUwMDFiWzMwbSBcdTAwMWJbMzRtZHBseXJcdTAwMWJbMzBtOjpcdTAwMWJbMzJtbGFnKClcdTAwMWJbMzBtICAgIG1hc2tzIFx1MDAxYlszNG1zdGF0c1x1MDAxYlszMG06OmxhZygpXHUwMDFiWzM5bVxuIn0= -->
-<pre><code>[30m-- [1mAttaching packages[22m --------------------------------------- tidyverse 1.2.1 --[39m
-[30m[32mv[30m [34mggplot2[30m 3.1.0     [32mv[30m [34mpurrr  [30m 0.2.5
-[32mv[30m [34mtibble [30m 1.4.2     [32mv[30m [34mdplyr  [30m 0.7.8
-[32mv[30m [34mtidyr  [30m 0.8.2     [32mv[30m [34mstringr[30m 1.3.1
-[32mv[30m [34mreadr  [30m 1.3.0     [32mv[30m [34mforcats[30m 0.3.0[39m
-[30m-- [1mConflicts[22m ------------------------------------------ tidyverse_conflicts() --
-[31mx[30m [34mdplyr[30m::[32mfilter()[30m masks [34mstats[30m::filter()
-[31mx[30m [34mdplyr[30m::[32mlag()[30m    masks [34mstats[30m::lag()[39m</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5zYyA8LSBcbiAgYmluZF9jb2xzKFxuICAgIGFuc2NvbWJlICU+JSBcbiAgICAgIHNlbGVjdChtYXRjaGVzKFwieFwiKSkgJT4lIFxuICAgICAgZ2F0aGVyKGRhdGFzZXQsIFwieFwiKSxcbiAgICBhbnNjb21iZSAlPiUgXG4gICAgICBzZWxlY3QobWF0Y2hlcyhcInlcIikpICU+JSBcbiAgICAgIGdhdGhlcihrZXksIFwieVwiKVxuICApICU+JSBcbiAgc2VsZWN0KC1rZXkpICU+JSBcbiAgbXV0YXRlKGRhdGFzZXQgPSBnc3ViKFwieFwiLCBcIlwiLCBkYXRhc2V0KSkgJT4lIFxuICBhc190aWJibGUoKVxuYGBgIn0= -->
@@ -1834,10 +1827,650 @@ $(document).ready(function () {
 </div>
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5zYyAlPiUgZ2dwbG90KGFlcyh4LCB5LCBjb2xvciA9IGRhdGFzZXQpKSArXG5nZW9tX3BvaW50KCkgK1xuZmFjZXRfd3JhcCh+ZGF0YXNldCwgbmNvbCA9IDIpXG5gYGAifQ== -->
+<pre class="r"><code>ansc %&gt;% ggplot(aes(x, y, color = dataset)) +
+geom_point() +
+facet_wrap(~dataset, ncol = 2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChpcmlzKVxuYGBgIn0= -->
+<pre class="r"><code>head(iris)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJvVlN3VTdETUF6TjJyVmJTN2VoYlh6R2VvQVBXQThjT1NCMllOZlFaVnRFU0tvMkd4ejVEZmdqSlBnQS9nTWhKS1NCMHlSVlZ5Wmh5Ylh6Nm1mSGRxN081NmZoUEVRSU9jajFXc2h4d1cwNzhHbWhOZ3FVZlVESUhZSGpnZlpCL1dTOExDVVpQU2w1VG9hdlN0NlNvY0hIcUpUa1JQK3ZlSkhCdThZR2h0ODEvTWpZd1ZrcGxqZjkxSGtyKzZIanBsODZUNFYvTjNndk92Ky85dDNlMCswcFh0bjhRZDBiak0vSWxyQUN2R05RMTZJRmthTEE1aFJ1U1Y3UVZEQ1JHeVRZMG54Rk9VMXhJNTJYTWx6WWJGV05KVTRsY0JIYU5jTTV2aU0yM0ROZ05DTVpadkVGNFN1NU50aVJ4cTdwb29LaVN5TC9oR21zSHRhWlpTU2xxc2hlNVNBWDk3R3RyZ2JtUE9vOStEclEvV2swRVM2d3hQRXlCOHFCUmpvaWsxUndTT2JZVjFZbnQvSUdNTmh3Vlh3eFNkY2JmanRSMnc1clcrb1o2OWQ4VDVkczI0dlpjZmt3QU1xSm5TakRONFNaUXgrYUxIdU1zNXh5YVRzQnRJaWxnRWxaQkhacmtiSTN0UHNGaU5LR0pWTURBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua2FibGUoaGVhZChpcmlzKSxcbmFsaWduPSBjKFwibFwiLCBcImNcIiwgXCJyXCIsIFwiY1wiLCBcImxcIiksXG5jb2wubmFtZXMgPSBjKFwiU2VwYWwgTGVuZ3RoXCIsIFwiU2VwYWwgV2lkdGhcIiwgXCJTZXBhbCBMZW5ndGhcIiwgXCJTZXBhbCBXaWR0aFwiLCBcIlNwZWNpZXNcIikpXG5gYGAifQ== -->
+<pre class="r"><code>kable(head(iris),
+align= c(&quot;l&quot;, &quot;c&quot;, &quot;r&quot;, &quot;c&quot;, &quot;l&quot;),
+col.names = c(&quot;Sepal Length&quot;, &quot;Sepal Width&quot;, &quot;Sepal Length&quot;, &quot;Sepal Width&quot;, &quot;Species&quot;))</code></pre>
+<!-- rnb-source-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="left">Sepal Length</th>
+<th align="center">Sepal Width</th>
+<th align="right">Sepal Length</th>
+<th align="center">Sepal Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">5.1</td>
+<td align="center">3.5</td>
+<td align="right">1.4</td>
+<td align="center">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="left">4.9</td>
+<td align="center">3.0</td>
+<td align="right">1.4</td>
+<td align="center">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="left">4.7</td>
+<td align="center">3.2</td>
+<td align="right">1.3</td>
+<td align="center">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="left">4.6</td>
+<td align="center">3.1</td>
+<td align="right">1.5</td>
+<td align="center">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="left">5.0</td>
+<td align="center">3.6</td>
+<td align="right">1.4</td>
+<td align="center">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="left">5.4</td>
+<td align="center">3.9</td>
+<td align="right">1.7</td>
+<td align="center">0.4</td>
+<td align="left">setosa</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChhaXJxdWFsaXR5KVxuYGBgIn0= -->
+<pre class="r"><code>head(airquality)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NiwibnJvdyI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJuVlN6VXJEUUJEZTNTUXREVnJGWGhVOENGSXdPZWhCdlVqUUhrUVFvUXIydWliUkJ0UGRrR3pyejhtWDhLQVA0eFBvSzFWbjExa05FUWUrN014OE96L2ZrdUZndE8yUGZFSUlJNDVIQ1hQQWRSbDhLSEZKUjUvM2hEZzljRnFBUlR6N2dBM0FBbURsaVJoYnJmRnZnQm5nR2VyM05ZOTN1cHFQMWw2MHZVYnIzOG1vdjJNczJzUjRDL25nWGR0SHJlOFI0Qmh3QWpnQTdBRU9hN3ozRHl4UGpWQVFwRlVpMTJvSTlnU2ZwQlU0eTRiRTVObWpGQ2tHN1hPWjh6SWNZdWhlWmlLeC9rVTZLV3pOcVJScWpJRXo0QStOUVoxUzNvVjJtTjZRNFN2OTJTak9lV1Uzc2trLzRZcUgxeVhVUXpSdmxMUmxvVElwb0lqMVVHZTltSmFOeE5KVTZFMlNJQjVQeFcyd3F3ZmdlMUhjanRiK0FmcTdKZnZFVmg2MmFxWGlKdnQ1S3kvblYybU9RUmNVRzhGaFVXWkNXU1dRclVJbEZiZjMvRmptTm1PMGtma1h3cjFmd3FrQ0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Ozone"],"name":[1],"type":["int"],"align":["right"]},{"label":["Solar.R"],"name":[2],"type":["int"],"align":["right"]},{"label":["Wind"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Temp"],"name":[4],"type":["int"],"align":["right"]},{"label":["Month"],"name":[5],"type":["int"],"align":["right"]},{"label":["Day"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"41","2":"190","3":"7.4","4":"67","5":"5","6":"1","_rn_":"1"},{"1":"36","2":"118","3":"8.0","4":"72","5":"5","6":"2","_rn_":"2"},{"1":"12","2":"149","3":"12.6","4":"74","5":"5","6":"3","_rn_":"3"},{"1":"18","2":"313","3":"11.5","4":"62","5":"5","6":"4","_rn_":"4"},{"1":"NA","2":"NA","3":"14.3","4":"56","5":"5","6":"5","_rn_":"5"},{"1":"28","2":"NA","3":"14.9","4":"66","5":"5","6":"6","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua2FibGUoaGVhZChhaXJxdWFsaXR5KSwgXG4gICAgICBhbGlnbj0gYyhcInJcIiwgXCJyXCIsIFwiY1wiLCBcImNcIiwgXCJsXCIsIFwibFwiKSxcbiAgICAgIGNvbC5uYW1lcyA9IGMoXCJPem9uZSAocHBiKVwiLCBcIlNvbGFyIFIgKGxhbmcpXCIsIFwiV2luZCAobXBoKVwiLCBcIlRlbXAgKMKwRilcIiwgXCJNb250aFwiLCBcIkRheVwiKSlcbmBgYCJ9 -->
+<pre class="r"><code>kable(head(airquality), 
+      align= c(&quot;r&quot;, &quot;r&quot;, &quot;c&quot;, &quot;c&quot;, &quot;l&quot;, &quot;l&quot;),
+      col.names = c(&quot;Ozone (ppb)&quot;, &quot;Solar R (lang)&quot;, &quot;Wind (mph)&quot;, &quot;Temp (°F)&quot;, &quot;Month&quot;, &quot;Day&quot;))</code></pre>
+<!-- rnb-source-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="right">Ozone (ppb)</th>
+<th align="right">Solar R (lang)</th>
+<th align="center">Wind (mph)</th>
+<th align="center">Temp (°F)</th>
+<th align="left">Month</th>
+<th align="left">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">41</td>
+<td align="right">190</td>
+<td align="center">7.4</td>
+<td align="center">67</td>
+<td align="left">5</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="right">36</td>
+<td align="right">118</td>
+<td align="center">8.0</td>
+<td align="center">72</td>
+<td align="left">5</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="right">12</td>
+<td align="right">149</td>
+<td align="center">12.6</td>
+<td align="center">74</td>
+<td align="left">5</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="right">313</td>
+<td align="center">11.5</td>
+<td align="center">62</td>
+<td align="left">5</td>
+<td align="left">4</td>
+</tr>
+<tr class="odd">
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="center">14.3</td>
+<td align="center">56</td>
+<td align="left">5</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="right">28</td>
+<td align="right">NA</td>
+<td align="center">14.9</td>
+<td align="center">66</td>
+<td align="left">5</td>
+<td align="left">6</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hpY2tzX2xtIDwtIGxtKHdlaWdodCB+IGZlZWQsIGRhdGEgPSBjaGlja3d0cylcbnN1bW1hcnkoY2hpY2tzX2xtKVxuYGBgIn0= -->
+<pre class="r"><code>chicks_lm &lt;- lm(weight ~ feed, data = chickwts)
+summary(chicks_lm)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua2FibGUoY2hpY2t3dHMpXG5gYGAifQ== -->
+<pre class="r"><code>kable(chickwts)</code></pre>
+<!-- rnb-source-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkh3MDMiDQphdXRob3I6ICJNb3JnYW4gVGFja2V0dCINCmRhdGU6ICJgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVkICVCICVZJylgIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQplZGl0b3Jfb3B0aW9uczoNCmNodW5rX291dHB1dF90eXBlOiBpbmxpbmUNCi0tLQ0KYGBge3J9DQpzdW1tYXJ5KGNhcnMpDQpgYGANCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmBgYA0KYGBge3J9DQphbnNjIDwtIA0KICBiaW5kX2NvbHMoDQogICAgYW5zY29tYmUgJT4lIA0KICAgICAgc2VsZWN0KG1hdGNoZXMoIngiKSkgJT4lIA0KICAgICAgZ2F0aGVyKGRhdGFzZXQsICJ4IiksDQogICAgYW5zY29tYmUgJT4lIA0KICAgICAgc2VsZWN0KG1hdGNoZXMoInkiKSkgJT4lIA0KICAgICAgZ2F0aGVyKGtleSwgInkiKQ0KICApICU+JSANCiAgc2VsZWN0KC1rZXkpICU+JSANCiAgbXV0YXRlKGRhdGFzZXQgPSBnc3ViKCJ4IiwgIiIsIGRhdGFzZXQpKSAlPiUgDQogIGFzX3RpYmJsZSgpDQpgYGANCg0KYGBge3J9DQphbnNjICU+JQ0KICBncm91cF9ieShkYXRhc2V0KSAlPiUgDQogIHN1bW1hcml6ZSgNCiAgICBtZWFuX3ggPSBtZWFuKHgpLA0KICAgIHN0ZGV2X3ggPSBzZCh4KSwNCiAgICBtZWFuX3kgPSBtZWFuKHkpLA0KICAgIHN0ZGV2X3kgPSBzZCh5KSkNCmBgYA0KIA0KDQo=</div>
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="right">weight</th>
+<th align="left">feed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">179</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="even">
+<td align="right">160</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="odd">
+<td align="right">136</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="even">
+<td align="right">227</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="odd">
+<td align="right">217</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="even">
+<td align="right">168</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="odd">
+<td align="right">108</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="even">
+<td align="right">124</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="odd">
+<td align="right">143</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="even">
+<td align="right">140</td>
+<td align="left">horsebean</td>
+</tr>
+<tr class="odd">
+<td align="right">309</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="even">
+<td align="right">229</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="odd">
+<td align="right">181</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="even">
+<td align="right">141</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="odd">
+<td align="right">260</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="even">
+<td align="right">203</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="odd">
+<td align="right">148</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="even">
+<td align="right">169</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="odd">
+<td align="right">213</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="even">
+<td align="right">257</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="odd">
+<td align="right">244</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="even">
+<td align="right">271</td>
+<td align="left">linseed</td>
+</tr>
+<tr class="odd">
+<td align="right">243</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="even">
+<td align="right">230</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="odd">
+<td align="right">248</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="even">
+<td align="right">327</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="odd">
+<td align="right">329</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="even">
+<td align="right">250</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="odd">
+<td align="right">193</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="even">
+<td align="right">271</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="odd">
+<td align="right">316</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="even">
+<td align="right">267</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="odd">
+<td align="right">199</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="even">
+<td align="right">171</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="odd">
+<td align="right">158</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="even">
+<td align="right">248</td>
+<td align="left">soybean</td>
+</tr>
+<tr class="odd">
+<td align="right">423</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="even">
+<td align="right">340</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="odd">
+<td align="right">392</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="even">
+<td align="right">339</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="odd">
+<td align="right">341</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="even">
+<td align="right">226</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="odd">
+<td align="right">320</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="even">
+<td align="right">295</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="odd">
+<td align="right">334</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="even">
+<td align="right">322</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="odd">
+<td align="right">297</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="even">
+<td align="right">318</td>
+<td align="left">sunflower</td>
+</tr>
+<tr class="odd">
+<td align="right">325</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="even">
+<td align="right">257</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="odd">
+<td align="right">303</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="even">
+<td align="right">315</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="odd">
+<td align="right">380</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="even">
+<td align="right">153</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="odd">
+<td align="right">263</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="even">
+<td align="right">242</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="odd">
+<td align="right">206</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="even">
+<td align="right">344</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="odd">
+<td align="right">258</td>
+<td align="left">meatmeal</td>
+</tr>
+<tr class="even">
+<td align="right">368</td>
+<td align="left">casein</td>
+</tr>
+<tr class="odd">
+<td align="right">390</td>
+<td align="left">casein</td>
+</tr>
+<tr class="even">
+<td align="right">379</td>
+<td align="left">casein</td>
+</tr>
+<tr class="odd">
+<td align="right">260</td>
+<td align="left">casein</td>
+</tr>
+<tr class="even">
+<td align="right">404</td>
+<td align="left">casein</td>
+</tr>
+<tr class="odd">
+<td align="right">318</td>
+<td align="left">casein</td>
+</tr>
+<tr class="even">
+<td align="right">352</td>
+<td align="left">casein</td>
+</tr>
+<tr class="odd">
+<td align="right">359</td>
+<td align="left">casein</td>
+</tr>
+<tr class="even">
+<td align="right">216</td>
+<td align="left">casein</td>
+</tr>
+<tr class="odd">
+<td align="right">222</td>
+<td align="left">casein</td>
+</tr>
+<tr class="even">
+<td align="right">283</td>
+<td align="left">casein</td>
+</tr>
+<tr class="odd">
+<td align="right">332</td>
+<td align="left">casein</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="when-chick_wts-ran-there-was-an-error-saying-chick_wts-was-not-a-known-function-which-makes-sense-becuase-i-saved-this-data-as-chickwts.-when-i-ran-chickwts-it-showed-up-a-list-of-numbers-with-their-associated-feed.-this-doesnt-seem-like-a-productive-way-of-making-this-list-though." class="section level1">
+<h1>when chick_wts ran there was an error saying chick_wts was not a known function which makes sense becuase i saved this data as chickwts. when i ran chickwts it showed up a list of numbers with their associated feed. This doesnt seem like a productive way of making this list though.</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueHRhYmxlKGNoaWNrc19sbSkgJT4lIGthYmxlKClcbmBgYCJ9 -->
+<pre class="r"><code>xtable(chicks_lm) %&gt;% kable()</code></pre>
+<!-- rnb-source-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">323.583333</td>
+<td align="right">15.83391</td>
+<td align="right">20.4360920</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">feedhorsebean</td>
+<td align="right">-163.383333</td>
+<td align="right">23.48549</td>
+<td align="right">-6.9567776</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">feedlinseed</td>
+<td align="right">-104.833333</td>
+<td align="right">22.39254</td>
+<td align="right">-4.6816194</td>
+<td align="right">0.0000149</td>
+</tr>
+<tr class="even">
+<td align="left">feedmeatmeal</td>
+<td align="right">-46.674242</td>
+<td align="right">22.89580</td>
+<td align="right">-2.0385502</td>
+<td align="right">0.0455667</td>
+</tr>
+<tr class="odd">
+<td align="left">feedsoybean</td>
+<td align="right">-77.154762</td>
+<td align="right">21.57799</td>
+<td align="right">-3.5756235</td>
+<td align="right">0.0006654</td>
+</tr>
+<tr class="even">
+<td align="left">feedsunflower</td>
+<td align="right">5.333333</td>
+<td align="right">22.39254</td>
+<td align="right">0.2381746</td>
+<td align="right">0.8124949</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHJlZXNfbG0gPC0gbG0oR2lydGggfiBIZWlnaHQsIGRhdGEgPSB0cmVlcylcbnN1bW1hcnkodHJlZXNfbG0pXG5gYGAifQ== -->
+<pre class="r"><code>trees_lm &lt;- lm(Girth ~ Height, data = trees)
+summary(trees_lm)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IEdpcnRoIH4gSGVpZ2h0LCBkYXRhID0gdHJlZXMpXG5cblJlc2lkdWFsczpcbiAgICBNaW4gICAgICAxUSAgTWVkaWFuICAgICAgM1EgXG4tNC4yMzg2IC0xLjkyMDUgLTAuMDcxNCAgMi43NDUwIFxuICAgIE1heCBcbiA0LjUzODQgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3JcbihJbnRlcmNlcHQpIC02LjE4ODM5ICAgIDUuOTYwMjBcbkhlaWdodCAgICAgICAwLjI1NTc1ICAgIDAuMDc4MTZcbiAgICAgICAgICAgIHQgdmFsdWUgUHIoPnx0fCkgICBcbihJbnRlcmNlcHQpICAtMS4wMzggIDAuMzA3NzIgICBcbkhlaWdodCAgICAgICAgMy4yNzIgIDAuMDAyNzYgKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIFxuICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJlcbiAgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDIuNzI4IG9uIDI5IGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC4yNjk3LFx0QWRqdXN0ZWQgUi1zcXVhcmVkOiAgMC4yNDQ1IFxuRi1zdGF0aXN0aWM6IDEwLjcxIG9uIDEgYW5kIDI5IERGLCAgcC12YWx1ZTogMC4wMDI3NThcbiJ9 -->
+<pre><code>
+Call:
+lm(formula = Girth ~ Height, data = trees)
+
+Residuals:
+    Min      1Q  Median      3Q 
+-4.2386 -1.9205 -0.0714  2.7450 
+    Max 
+ 4.5384 
+
+Coefficients:
+            Estimate Std. Error
+(Intercept) -6.18839    5.96020
+Height       0.25575    0.07816
+            t value Pr(&gt;|t|)   
+(Intercept)  -1.038  0.30772   
+Height        3.272  0.00276 **
+---
+Signif. codes:  
+  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’
+  0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.728 on 29 degrees of freedom
+Multiple R-squared:  0.2697,    Adjusted R-squared:  0.2445 
+F-statistic: 10.71 on 1 and 29 DF,  p-value: 0.002758</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueHRhYmxlKHRyZWVzX2xtKSAlPiUga2FibGUoKVxuYGBgIn0= -->
+<pre class="r"><code>xtable(trees_lm) %&gt;% kable()</code></pre>
+<!-- rnb-source-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">-6.1883945</td>
+<td align="right">5.9601994</td>
+<td align="right">-1.038286</td>
+<td align="right">0.3077168</td>
+</tr>
+<tr class="even">
+<td align="left">Height</td>
+<td align="right">0.2557471</td>
+<td align="right">0.0781583</td>
+<td align="right">3.272169</td>
+<td align="right">0.0027578</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><span class="math inline">\(e = mc^2\)</span></p>
+<p><span class="math display">\[\frac{\Delta N}{\Delta t} = rN\left(\frac{K-N}{K}\right).\]</span> <span class="math display">\[p + \frac{1}{2}pV^2 +pgh = constant\]</span></p>
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkh3MDMiDQphdXRob3I6ICJNb3JnYW4gVGFja2V0dCINCmRhdGU6ICJgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVkICVCICVZJylgIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQplZGl0b3Jfb3B0aW9uczoNCmNodW5rX291dHB1dF90eXBlOiBpbmxpbmUNCi0tLQ0KYGBge3J9DQpzdW1tYXJ5KGNhcnMpDQpgYGANCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoa25pdHIpDQpsaWJyYXJ5KHh0YWJsZSkNCg0KYGBgDQpgYGB7cn0NCmFuc2MgPC0gDQogIGJpbmRfY29scygNCiAgICBhbnNjb21iZSAlPiUgDQogICAgICBzZWxlY3QobWF0Y2hlcygieCIpKSAlPiUgDQogICAgICBnYXRoZXIoZGF0YXNldCwgIngiKSwNCiAgICBhbnNjb21iZSAlPiUgDQogICAgICBzZWxlY3QobWF0Y2hlcygieSIpKSAlPiUgDQogICAgICBnYXRoZXIoa2V5LCAieSIpDQogICkgJT4lIA0KICBzZWxlY3QoLWtleSkgJT4lIA0KICBtdXRhdGUoZGF0YXNldCA9IGdzdWIoIngiLCAiIiwgZGF0YXNldCkpICU+JSANCiAgYXNfdGliYmxlKCkNCmBgYA0KDQpgYGB7cn0NCmFuc2MgJT4lDQogIGdyb3VwX2J5KGRhdGFzZXQpICU+JSANCiAgc3VtbWFyaXplKA0KICAgIG1lYW5feCA9IG1lYW4oeCksDQogICAgc3RkZXZfeCA9IHNkKHgpLA0KICAgIG1lYW5feSA9IG1lYW4oeSksDQogICAgc3RkZXZfeSA9IHNkKHkpKQ0KYGBgDQpgYGB7cn0NCmFuc2MgJT4lIGdncGxvdChhZXMoeCwgeSwgY29sb3IgPSBkYXRhc2V0KSkgKw0KZ2VvbV9wb2ludCgpICsNCmZhY2V0X3dyYXAofmRhdGFzZXQsIG5jb2wgPSAyKQ0KYGBgDQpgYGB7cn0NCmhlYWQoaXJpcw0KYGBgDQpgYGB7cn0NCmthYmxlKGhlYWQoaXJpcyksDQphbGlnbj0gYygibCIsICJjIiwgInIiLCAiYyIsICJsIiksDQpjb2wubmFtZXMgPSBjKCJTZXBhbCBMZW5ndGgiLCAiU2VwYWwgV2lkdGgiLCAiU2VwYWwgTGVuZ3RoIiwgIlNlcGFsIFdpZHRoIiwgIlNwZWNpZXMiKSkNCmBgYA0KYGBge3J9DQpoZWFkKGFpcnF1YWxpdHkpDQpgYGANCmBgYHtyfQ0Ka2FibGUoaGVhZChhaXJxdWFsaXR5KSwgDQogICAgICBhbGlnbj0gYygiciIsICJyIiwgImMiLCAiYyIsICJsIiwgImwiKSwNCiAgICAgIGNvbC5uYW1lcyA9IGMoIk96b25lIChwcGIpIiwgIlNvbGFyIFIgKGxhbmcpIiwgIldpbmQgKG1waCkiLCAiVGVtcCAowrBGKSIsICJNb250aCIsICJEYXkiKSkNCmBgYA0KIA0KYGBge3J9DQpjaGlja3NfbG0gPC0gbG0od2VpZ2h0IH4gZmVlZCwgZGF0YSA9IGNoaWNrd3RzKQ0Kc3VtbWFyeShjaGlja3NfbG0pDQpgYGANCg0KDQpgYGB7cn0NCmthYmxlKGNoaWNrd3RzKQ0KYGBgDQojIHdoZW4gY2hpY2tfd3RzIHJhbiB0aGVyZSB3YXMgYW4gZXJyb3Igc2F5aW5nIGNoaWNrX3d0cyB3YXMgbm90IGEga25vd24gZnVuY3Rpb24gd2hpY2ggbWFrZXMgc2Vuc2UgYmVjdWFzZSBpIHNhdmVkIHRoaXMgZGF0YSBhcyBjaGlja3d0cy4gd2hlbiBpIHJhbiBjaGlja3d0cyBpdCBzaG93ZWQgdXAgYSBsaXN0IG9mIG51bWJlcnMgd2l0aCB0aGVpciBhc3NvY2lhdGVkIGZlZWQuIFRoaXMgZG9lc250IHNlZW0gbGlrZSBhIHByb2R1Y3RpdmUgd2F5IG9mIG1ha2luZyB0aGlzIGxpc3QgdGhvdWdoLiANCg0KYGBge3J9DQp4dGFibGUoY2hpY2tzX2xtKSAlPiUga2FibGUoKQ0KYGBgDQpgYGB7cn0NCnRyZWVzX2xtIDwtIGxtKEdpcnRoIH4gSGVpZ2h0LCBkYXRhID0gdHJlZXMpDQpzdW1tYXJ5KHRyZWVzX2xtKQ0KYGBgDQoNCmBgYHtyfQ0KeHRhYmxlKHRyZWVzX2xtKSAlPiUga2FibGUoKQ0KYGBgDQoNCiRlID0gbWNeMiQNCg0KJCRcZnJhY3tcRGVsdGEgTn17XERlbHRhIHR9ID0gck5cbGVmdChcZnJhY3tLLU59e0t9XHJpZ2h0KS4kJA0KJCRwICsgXGZyYWN7MX17Mn1wVl4yICtwZ2ggPSBjb25zdGFudCQkDQoNCg0K</div>
 
 
 

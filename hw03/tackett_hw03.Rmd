@@ -12,6 +12,9 @@ summary(cars)
 
 ```{r}
 library(tidyverse)
+library(knitr)
+library(xtable)
+
 ```
 ```{r}
 ansc <- 
@@ -37,5 +40,54 @@ ansc %>%
     mean_y = mean(y),
     stdev_y = sd(y))
 ```
+```{r}
+ansc %>% ggplot(aes(x, y, color = dataset)) +
+geom_point() +
+facet_wrap(~dataset, ncol = 2)
+```
+```{r}
+head(iris
+```
+```{r}
+kable(head(iris),
+align= c("l", "c", "r", "c", "l"),
+col.names = c("Sepal Length", "Sepal Width", "Sepal Length", "Sepal Width", "Species"))
+```
+```{r}
+head(airquality)
+```
+```{r}
+kable(head(airquality), 
+      align= c("r", "r", "c", "c", "l", "l"),
+      col.names = c("Ozone (ppb)", "Solar R (lang)", "Wind (mph)", "Temp (°F)", "Month", "Day"))
+```
  
+```{r}
+chicks_lm <- lm(weight ~ feed, data = chickwts)
+summary(chicks_lm)
+```
+
+
+```{r}
+kable(chickwts)
+```
+# when chick_wts ran there was an error saying chick_wts was not a known function which makes sense becuase i saved this data as chickwts. when i ran chickwts it showed up a list of numbers with their associated feed. This doesnt seem like a productive way of making this list though. 
+
+```{r}
+xtable(chicks_lm) %>% kable()
+```
+```{r}
+trees_lm <- lm(Girth ~ Height, data = trees)
+summary(trees_lm)
+```
+
+```{r}
+xtable(trees_lm) %>% kable()
+```
+
+$e = mc^2$
+
+$$\frac{\Delta N}{\Delta t} = rN\left(\frac{K-N}{K}\right).$$
+$$p + \frac{1}{2}pV^2 +pgh = constant$$
+
 
