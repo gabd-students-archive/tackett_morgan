@@ -7,5 +7,25 @@ editor_options:
 chunk_output_type: inline
 ---
 ```{r}
+summary(cars)
+```
+
+```{r}
 library(tidyverse)
 ```
+```{r}
+ansc <- 
+  bind_cols(
+    anscombe %>% 
+      select(matches("x")) %>% 
+      gather(dataset, "x"),
+    anscombe %>% 
+      select(matches("y")) %>% 
+      gather(key, "y")
+  ) %>% 
+  select(-key) %>% 
+  mutate(dataset = gsub("x", "", dataset)) %>% 
+  as_tibble()
+```
+ 
+
