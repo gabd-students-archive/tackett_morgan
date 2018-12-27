@@ -322,4 +322,97 @@ ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
 
 Just read this section as a contextual review of everything you just learned.
 
+#PART TWO
+#Graph one
+```{r}
+trees
+```
+```{r}
+ggplot(data = trees) + geom_point(mapping = aes(x = Height, y = Girth))
+```
+#This is no definite pattern to this chart however, it does seem that there is a positive correlation between Height and Girth. 
+
+#graph two 
+```{r}
+?year
+```
+```{r}
+year <- c(1821:1934)
+year
+```
+```{r}
+class(lynx)
+as.vector(year)
+```
+```{r}
+pelts <- c(as.vector(lynx))
+pelts
+```
+```{r}
+lynx_pelts <- data.frame(year, pelts)
+lynx_pelts
+```
+```{r}
+ggplot(data = lynx_pelts, mapping = aes(x = year, y = pelts)) + 
+  geom_line(color = "maroon")
+```
+#this graph has drastic ups and downs but pretty regular pattern in ups and downs. Every 40 years a huge spike occurs in pelts but every five or so years a smaller spike occurs. 
+
+#graph three
+```{r}
+iris
+```
+```{r}
+ggplot(data = iris) + geom_point(mapping = aes(x = Petal.Length, y = Petal.Width, color = Species, shape = Species, size = 2)) + labs(x = "Petal Length") + labs(y = "Petal WIdth")
+```
+#there seems to be a clear corelation with petal length and width. The longer the petal the wider it normally is. virginica seems to be the largest petals in both length and width. setosa seems to be the smallest petals in length and width. 
+
+#graph 4 and 5
+```{r}
+geom_violin
+```
+```{r}
+msleep
+```
+```{r}
+ggplot(data = msleep) + 
+  geom_violin(mapping = aes(x = vore, y = sleep_rem), fill = "grey70")
+```
+```{r}
+ggplot(data = msleep) + 
+  geom_violin(mapping = aes(x = vore, y = sleep_rem), fill = "grey30")
+```
+#A violin plot is similar to a box plot but also show the probability density. The grey value correlates to how dark the grey is. The higher the grey value the lighter the shade. 
+
+
+#graph 7
+```{r}
+?msleep
+```
+
+```{r}
+ggplot(data = msleep) + geom_boxplot(mapping = aes(x = order, y = sleep_total)) + coord_flip()
+```
+#Some species seem to have much more variation in sleep amount than others. carnivora seems to have the most variation while there are multiple species that have very little variation. 
+
+#graph 8
+```{r}
+data("msleep")
+ggplot(data = msleep) + geom_boxplot(mapping =  aes(x = conservation, y = awake, color = conservation)) + labs(x = "Conservation") + labs (y = "Awake") + geom_jitter(mapping = aes(x = conservation, y = awake, color = conservation)) + geom_point(mapping = aes(x = conservation, y = awake, color = conservation)) + coord_flip() + scale_fill_discrete(name = "Concervation") 
+
+```
+
+#Graph 9 and 10
+```{r}
+ggplot(data = msleep) + 
+  geom_point(mapping = aes(x = awake , y = bodywt, color = conservation))
+```
+#this plot seems like its hard to read very well but if the highest bodywt wasnt included the graph would be much easier to read. There is no apparent trend in conservatio, time awake and bodywt.
+
+```{r}
+ggplot(data = msleep) + 
+  geom_point(mapping = aes(x = awake , y = brainwt, color = order)) +
+  facet_wrap(~ conservation, ncol = 3)
+```
+#This graph shows correlations between awake, brainwt, order and conservation. You can see that primates tend to have higher brainwt and are awake more often. 
 
