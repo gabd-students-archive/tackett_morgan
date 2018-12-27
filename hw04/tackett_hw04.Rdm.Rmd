@@ -5,6 +5,7 @@ date: "`r format(Sys.time(), '%d %B %Y')`"
 output: html_notebook
 editor_options: 
   chunk_output_type: inline
+  
 ---
 
 ```{r setup, include=FALSE}
@@ -415,3 +416,4 @@ ggplot(data = msleep) +
   facet_wrap(~ conservation, ncol = 3)
 ```
 #This graph shows correlations between awake, brainwt, order and conservation. You can see that primates tend to have higher brainwt and are awake more often. 
+
