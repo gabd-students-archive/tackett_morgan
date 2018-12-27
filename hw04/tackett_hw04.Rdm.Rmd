@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "HW04 Part 1: Complete Chapter 3"
 author: "your name"
@@ -383,6 +384,7 @@ ggplot(data = msleep) +
 ggplot(data = msleep) + 
   geom_violin(mapping = aes(x = vore, y = sleep_rem), fill = "grey30")
 ```
+
 #A violin plot is similar to a box plot but also show the probability density. The grey value correlates to how dark the grey is. The higher the grey value the lighter the shade. 
 
 
@@ -415,5 +417,4 @@ ggplot(data = msleep) +
   geom_point(mapping = aes(x = awake , y = brainwt, color = order)) +
   facet_wrap(~ conservation, ncol = 3)
 ```
-#This graph shows correlations between awake, brainwt, order and conservation. You can see that primates tend to have higher brainwt and are awake more often. 
-
+#This graph shows correlations between awake, brainwt, order and conservation. You can see that primates tend to have higher brainwt and are awake more often.  
