@@ -54,10 +54,61 @@ ggplot(data = t_roseate, mapping = aes(x = year, y = Individuals)) +
 
 ##Darter
 ```{r}
+<<<<<<< HEAD
+file_path <- "~/BI485/tackett_morgan/data"
+```
+
+```{r}
+start_pos <- c(1, 4, 15, 16, 17, 18, 21, 25, 29, 33, 36, 39, 40)
+stop_pos <- c(3, 14, 15, 16, 17, 20, 24, 28, 32, 35, 38, 40, 41)
+names <- c("specimen id", "species", "riffle", "age", "sex", "length", "depth", "velocity", "temperature", "majsub", "minsub", "majtype", "mintype")
+darters <- read_fwf(file.path(file_path, "darter.txt"), fwf_positions(start_pos, stop_pos, col_names = names), skip = 15)
+```
+```{r}
+darters
+```
+```{r}
+darters_riffle <- darters$riffle <- factor(darters$riffle, levels = c("1", "2"), ordered = FALSE)
+
+```
+```{r}
+darters_majtype <- darters$majtype <- factor(darters$majtype, levels = c("s", "fg", "sg", "lg", "c"), ordered = TRUE)
+```
+```{r}
+darters2 <- darters %>%
+  filter(!species %in% c("zonale", "tetrazonum"))
+darters2
+```
+```{r}
+darters3 <- subset(darters2, select = -c(mintype,minsub) )
+darters3
+```
+```{r}
+colnames(darters3)[colnames(darters3)=="majsub"] <- "major_substrate"
+colnames(darters3)[colnames(darters3)=="majtype"] <- "major_type"
+darters3
+```
+```{r}
+ggplot(data = darters3, mapping = aes(x = length, y = depth, color = species, shape = species)) + 
+  geom_point() +
+  facet_wrap(~ riffle, nrow = 2)
+  
+```
+#Riffle one has more caeruleum with higher depth and longer spectable. 
+```{r}
+ggplot(data = darters3, mapping = aes(x = species, y = length)) + 
+  geom_boxplot() +
+  facet_wrap(~ riffle, nrow = 2)
+```
+#blemnioides has the most outliers.
+
+
+=======
 darter <- read_tsv("~/BI485/tackett_morgan/data/darter.txt")
 darter
 ```
 
+>>>>>>> 4e1497f781320502b015fcc58f8b006b87473623
 
 
 
