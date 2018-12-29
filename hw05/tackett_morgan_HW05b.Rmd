@@ -1,0 +1,115 @@
+---
+title: "HW05b: Importing"
+author: "Morgan Tackett"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+##Limpets
+```{r}
+library(tidyverse)
+limpets <- read_csv("~/BI485/tackett_morgan/data/limpets.csv")
+limpets
+```
+
+```{r}
+read_csv("~/BI485/tackett_morgan/data/limpets.csv", col_types = c("ncc"))
+```
+```{r}
+
+sites_ordered <- limpets$Site <- factor(limpets$Site, levels = c("PBL", "KNRM", "VBG", "WP", "PF", "DP", "SIO", "CTZ1", "CTZ2", "CNM"), ordered = TRUE)
+sites_ordered
+```
+```{r}
+ggplot(data = limpets, mapping = aes(x = Site, y = Length, color = Protected)) + 
+  geom_boxplot()
+```
+```{r}
+ggplot(data = limpets, mapping = aes(x = Site, y = Length, color = Protected)) + 
+  geom_boxplot() +
+  labs(x = "Site", y = "Length (mm)")
+```
+#This boxplot shows that the three protected sites have larger limpets, WP and DP have outlyers. 
+
+##Roseate
+```{r}
+roseate <- read_tsv("~/BI485/tackett_morgan/data/roseate_terns.txt")
+```
+```{r}
+t_roseate <- roseate %>% 
+  gather("AR", "AL", "AC", "BR", "BL", "BC", "JR", "JL", "JC", key = "Site", value = "Individuals")
+t_roseate
+```
+
+```{r}
+filter(t_roseate, is.na(Individuals) == FALSE)
+```
+```{r}
+ggplot(data = t_roseate, mapping = aes(x = year, y = Individuals)) + 
+  geom_line() +
+  facet_wrap(~ Site, nrow = 2)
+```
+#The clearest increase in population is the AR population, other populations that seem to increase are JC, AC, AL and BC. JR dramatically decreased which is similar to BR. 
+
+##Darter
+```{r}
+darter <- read_tsv("~/BI485/tackett_morgan/data/darter.txt")
+darter
+```
+
+
+
+
+##Abalone
+```{r}
+abalone <- read_csv("~/BI485/tackett_morgan/data/abalone.csv")
+```
+
+```{r}
+abalone1 <- select(abalone, 2:10)
+abalone1
+```
+```{r}
+ggplot(data = abalone1, mapping = aes(x = Type, y = Height)) + 
+  geom_boxplot() 
+```
+```{r}
+ggplot(data = abalone1, mapping = aes(x = Rings, y = Height)) + 
+  geom_point() 
+```
+#The large individuals do not correlate to old individuals. 
+```{r}
+abalone2 <- filter(abalone1, Height < 0.3)
+abalone2
+```
+```{r}
+abalone_type <- abalone2$Type <- factor(abalone2$Type, levels = c("I", "F", "M"), ordered = TRUE)
+sites_ordered
+```
+
+```{r}
+ggplot(data = abalone2, mapping = aes(x = Rings, y = Height)) + 
+  geom_point() +
+  facet_wrap(~ Type, nrow = 2)
+```
+#Female seems the largest followed by males but there is a lot in common between the three types. 
+
+```{r}
+filter(abalone2, Height == 0)
+```
+```{r}
+abalone2[abalone2 == 0] <- NA
+```
+```{r}
+abalone3 <- filter(abalone2, is.na(Height) == FALSE)
+```
+```{r}
+ggplot(data = abalone3, mapping = aes(x = LongestShell, y = Diameter, color = Type)) + 
+  geom_point()
+```
+```{r}
+ggplot(data = abalone2) + 
+  geom_point(mapping = aes(x = Rings, y = WholeWeight))
+```
+
