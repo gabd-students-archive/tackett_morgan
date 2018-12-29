@@ -54,6 +54,10 @@ ggplot(data = t_roseate, mapping = aes(x = year, y = Individuals)) +
 
 ##Darter
 ```{r}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 927bc4940e0f5535c2ae3be01de32f468b389ad1
 file_path <- "~/BI485/tackett_morgan/data"
 ```
 
@@ -102,6 +106,15 @@ ggplot(data = darters3, mapping = aes(x = species, y = length)) +
 #blemnioides has the most outliers.
 
 
+<<<<<<< HEAD
+=======
+=======
+darter <- read_tsv("~/BI485/tackett_morgan/data/darter.txt")
+darter
+```
+
+>>>>>>> 4e1497f781320502b015fcc58f8b006b87473623
+>>>>>>> 927bc4940e0f5535c2ae3be01de32f468b389ad1
 
 
 
