@@ -582,4 +582,3 @@ select(flights, one_of(vars))
 select(flights, contains("TIME", ignore.case = TRUE))
 ```
 #This picks out all variables with the indicated word or phrase. 
-
