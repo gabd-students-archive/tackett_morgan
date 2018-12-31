@@ -200,4 +200,26 @@ sparrows %>% ggscatmat(columns = 1:7)
 
 #Plot eleven
 
+```{r}
+month_order = c("May", "June", "July", "August", "September")
+sparrows %>% 
+  filter(Month %in% 5:9,
+         Sex != 0) %>% 
+  mutate(Month = case_when(
+    Month == 5 ~ "May",
+    Month == 6 ~ "June",
+    Month == 7 ~ "July",
+    Month == 8 ~ "August",
+    Month == 9 ~ "September"),
+    Month = factor(Month, levels = month_order, ordered = TRUE),
+    Sex = ifelse(Sex == 4, "Male", "Female")) %>% 
+  ggplot(aes(x = wingcrd,
+             y = wt)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_grid(Sex ~ Month)
+```
+#Almost all plots have a positive slope other than males in May, this shows opposite trends as females in may but the sample size was small. 
+
+
 
