@@ -193,4 +193,11 @@ h1honors + h2honors
 #complete honors portion
 
 #Plot ten
+```{r}
+sparrows %>% ggscatmat(columns = 1:7)
+```
+#Im proud of my computer speed after this step. Created a chart from columns 1 through 7 using density and scatter plots.
+
+#Plot eleven
+
 
