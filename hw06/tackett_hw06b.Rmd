@@ -1,0 +1,184 @@
+---
+title: "Tackett_hw06b"
+author: "Morgan Tackett"
+date: "12/30/2018"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(knitr)
+library(smatr)
+```
+```{r}
+file_path <- "~/BI485/tackett_morgan/data"
+```
+#plot 1
+```{r}
+darters <- read.delim(file.path(file_path, "darter.txt"))
+Column_start <- c(1, 4, 15, 16, 17, 18, 21, 25, 29, 33, 36, 39, 40)
+Column_stop <- c(3, 14, 15, 16, 17, 20, 24, 28, 32, 35, 38, 40, 41)
+names <- c("specimen id", "species", "riffle", "age", "sex", "length", "depth", "velocity", "temperature", "majsub", "minsub", "majtype", "mintype")
+darter_t <- read_fwf(file.path(file_path, "darter.txt"), fwf_positions(Column_start, Column_stop, col_names = names), skip = 15)
+darter_t2 <- darter_t %>%
+  filter(!species %in% c("zonale", "tetrazonum"))
+```
+```{r}
+darter_t2
+```
+```{r}
+mutate(darter_t2, total_substrate = majsub + minsub)
+```
+#Total substrate = 1
+```{r}
+darter_t2$riffle[darter_t2$riffle==1] <- "Riffle_1"
+darter_t2$riffle[darter_t2$riffle==2] <- "Riffle_2"
+darter_t2$sex[darter_t2$sex=="f"] <- "Female"
+darter_t2$sex[darter_t2$sex=="m"] <- "Male"
+darter_t2 <- mutate(darter_t2, length = length * 10)
+darter_t2
+```
+```{r}
+darter_means <- darter_t2 %>% group_by(species) %>%
+  summarise_at(.vars = vars(length, depth, velocity), 
+               .funs = c(mean = "mean")) 
+darter_means
+```
+```{r}
+ggplot(data = darter_t2) +
+  stat_summary(
+    mapping = aes(x = species, y = length),
+    fun.ymin = min,
+    fun.ymax = max,
+    fun.y = median
+  ) +
+  geom_point(data = darter_means, mapping = aes(x = species, y = length_mean), shape = 15) + 
+  coord_flip() +
+    facet_wrap(~ riffle) +
+   ylab("Length (mm)") + xlab("Species")
+```
+#Riffle one seems to have much larger values than riffle two.
+#plot 2
+```{r}
+ggplot(data = darter_t2, mapping = aes(x=length, y=species))+
+  geom_point(color = "grey55")
+```
+```{r}
+ggplot(data=darter_t2, mapping = aes(x=length, y=species))+
+  stat_summary(mapping = aes(x=length, y=species),
+               fun.y = median,
+               geom = "point",
+               size = 2.2
+               )+
+  geom_point(color="grey55")
+```
+
+```{r}
+ggplot(data = darter_t2, mapping = aes(x=length, y=species))+
+  stat_summary(mapping = aes(x=length, y=species),
+               fun.y = median,
+               geom = "point",
+               size=2.2
+               )+
+  geom_point(color="grey55")+
+  stat_summary(mapping = aes(x=length, y=species),
+               fun.y = mean,
+               geom = "point",
+               size=3,
+               color = "maroon"
+               )
+```
+
+```{r}
+ggplot(data = darter_t2
+       , mapping = aes(x=length, y=species))+
+  stat_summary(mapping = aes(x=length, y=species),
+               fun.y = median,
+               geom = "point",
+               size=2.2
+               )+
+  geom_point(color="grey55")+
+  stat_summary(mapping = aes(x=length, y=species),
+               fun.y = mean,
+               geom = "point",
+               size=3,
+               color = "maroon"
+               )+
+  coord_flip()+
+  facet_wrap(~ riffle, nrow=2)+
+  labs(y=NULL, x="Length (cm)")
+```
+#I do not see a clear pattern to this data, however riffle oe has less breaks in length than riffle two. 
+
+##Stress and corticosterones in birds
+```{r}
+names <- c("capture_date", "day", "site", "urban_score", "cortF", "cortB", "sex", "smi", "tarsus", "mass", "basal_cort", "stress_cort")
+feathers <- read_csv(file.path(file_path, "feathers.csv"), locale = locale(decimal_mark = ","), skip = 1, col_names = names)
+feathers
+```
+#Already tidy
+```{r}
+mean_tarsus <- mean(feathers[["tarsus"]])
+mean_tarsus
+```
+```{r}
+feathers2 <- mutate(feathers, log_mass = log(mass), log_tarsus = log(tarsus))
+feathers2
+```
+```{r}
+major_axis <- sma(log_mass ~ log_tarsus, data = feathers2)
+summary(major_axis)
+```
+```{r}
+coef(major_axis)
+b <- 1.864889
+```
+```{r}
+feathers3 <- mutate(feathers2, new_smi = mass * (mean_tarsus / tarsus) ^ b)
+feathers3
+```
+```{r}
+feathers3 %>%
+  group_by(site)
+```
+```{r}
+mean_basal_cort <- mean(feathers3$basal_cort, na.rm = TRUE)
+mean_stress_cort <- mean(feathers3$stress_cort, na.rm = TRUE)
+sd_basal_cort <- sd(feathers3$basal_cort, na.rm = TRUE)
+sd_stress_cort <- sd(feathers3$stress_cort, na.rm = TRUE)
+se_basal_cort <- sd_basal_cort/(sqrt(43))
+se_stress_cort <- sd_stress_cort/(sqrt(43))
+```
+```{r}
+ggplot(data = feathers3, mapping = aes(x = new_smi, y = site)) + 
+  geom_boxplot()
+```
+#Villefollet has new_smi between 24-25, nort has new_smi between 22 and 23. larochelle has new_smi between 23 and 24 and cebc has new_smi above 25
+```{r}
+min_basal <- mean_basal_cort - se_basal_cort
+max_basal <- mean_basal_cort + se_basal_cort
+ggplot(data = feathers3, mapping = aes(x = site, y = basal_cort)) + 
+  geom_point() +
+  geom_errorbar(ymin = min_basal, ymax = max_basal)
+```
+```{r}
+min_stress <- mean_stress_cort - se_stress_cort
+max_stress <- mean_stress_cort + se_stress_cort
+ggplot(data = feathers3, mapping = aes(x = site, y = stress_cort)) + 
+  geom_point() +
+  geom_linerange(ymin = min_stress, ymax = max_stress)
+```
+
+##Honors contract
+#Modifying stress plot 3
+```{r}
+min_stress <- mean_stress_cort - se_stress_cort
+max_stress <- mean_stress_cort + se_stress_cort
+ggplot(data = feathers3, mapping = aes(x = site, y = stress_cort)) + 
+  geom_point() +
+  geom_linerange(ymin = min_stress, ymax = max_stress)
+geom_point(data = stress_cort),
+             aes(x = site,
+                 y = stress_cort),
+             color = "maroon",
+             size = 3)
+```
