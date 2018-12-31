@@ -123,4 +123,74 @@ p_culmen + p_nalospi + p_wt + p_wingcrd + p_tarsus + p_head + plot_layout(ncol =
 ```
 #Typing the plots in order of left to right then adding a column number of 3 gives the correct final plot. 
 
+#Figure 5
+```{r}
+h1 <- sparrows %>%
+  filter(Month %in% 6:8) %>%
+  ggplot() +
+  geom_histogram(aes(x = wt),
+                 binwidth = 0.5,
+                 boundary = 0,
+                 closed = "right",
+                 color = "black") +
+  scale_x_continuous(breaks = seq(14, 28, by = 2))
+h1
+```
+#histogram 1 but now we have to assign months
+```{r}
+h2 <- sparrows %>%
+  filter(Month %in% 6:8) %>% 
+  mutate(Month = case_when(
+    Month == 6 ~ "June",
+    Month == 7 ~ "July",
+    Month == 8 ~ "August")) %>% 
+  ggplot() +
+  geom_histogram(aes(x = wt),
+                 binwidth = 0.5,
+                 boundary = 0,
+                 color = "black") +
+  scale_x_continuous(breaks = seq(14, 28, by = 2)) +
+  facet_wrap(~ Month, ncol = 1)
+h2
+```
+#We now see each months histogram for june july and august. 
+#Now we add H1 and H2 together
+```{r}
+h1 + h2
+```
+
+#honors 
+```{r}
+h1honors <- sparrows %>%
+  filter(Month %in% 6:8) %>%
+  ggplot() +
+  geom_density(aes(x = wt),
+                 binwidth = 0.5,
+                 boundary = 0,
+                 closed = "right",
+                 color = "black") +
+  scale_x_continuous(breaks = seq(14, 28, by = 2))
+h1honors
+```
+```{r}
+h2honors <- sparrows %>%
+  filter(Month %in% 6:8) %>% 
+  mutate(Month = case_when(
+    Month == 6 ~ "June",
+    Month == 7 ~ "July",
+    Month == 8 ~ "August")) %>% 
+  ggplot() +
+  geom_density(aes(x = wt,
+                   fill = Month),
+               alpha = 0.42) +
+  scale_x_continuous(breaks = seq(14, 28, by = 2)) 
+h2honors
+```
+#All three months are on the same plot, shaded differently
+```{r}
+h1honors + h2honors
+```
+#complete honors portion
+
+#Plot ten
 
