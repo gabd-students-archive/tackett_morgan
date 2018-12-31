@@ -1,18 +1,126 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Tackett_hw07a"
+author: "Morgan Tackett"
+date: "12/31/2018"
+output: html_document
 ---
-
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
-
 ```{r}
-plot(cars)
+library(tidyverse)
+library(GGally)
+library(devtools)
+library(patchwork)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+```{r}
+file_path <- "~/BI485/tackett_morgan/data"
+```
+#Tab seperated
+```{r}
+sparrow <- read_tsv(file.path(file_path, "sparrows.txt"))
+```
+```{r}
+sparrow
+```
+```{r}
+View(sparrow)
+```
+#Adding the two extra columns
+```{r}
+sparrows <- sparrow %>% 
+  mutate(box_group = "Sparrows",
+         row_order = 1:nrow(.))
+View(sparrows)
+```
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+#Plot two
+```{r}
+plot_box <-
+  sparrows %>%
+  ggplot(aes(x = box_group, 
+             y = wingcrd)) +
+  geom_boxplot(width = 0.25) + 
+  labs(x = NULL,
+       y = "Wing Length (mm)")
+plot_box
+```
+#Shows outliers but they are very close to the real numbers so well make a different plot to see.
+```{r}
+plot_cleveland <-
+  sparrows %>%ggplot(aes(x = wingcrd,
+                       y = row_order)) +
+  geom_point() + 
+  labs(x = "Wing length (mm)", 
+       y = "Order of the data")
+plot_cleveland
+```
+#Different type of graph that will be used to merge with the first graph
+```{r}
+plot_box + plot_cleveland
+```
+#Recreated figure 2@
+```{r}
+plot_box + plot_cleveland + coord_flip()
+```
+#Fixed the axis problem! There is no real difference in the outliers so the scientists can use those numbers as well. 
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+#Plot three
+```{r}
+p_culmen <- sparrows %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = culmen)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_culmen
+```
+```{r}
+p_nalospi <- sparrows %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = nalospi)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_nalospi
+```
+```{r}
+p_wt <- sparrows %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = wt)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_wt
+```
+```{r}
+p_wingcrd <- sparrows %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = wingcrd)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_wingcrd
+```
+```{r}
+p_tarsus <- sparrows %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = tarsus)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_tarsus
+```
+```{r}
+p_head <- sparrows %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = head)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_head
+```
+```{r}
+p_culmen + p_nalospi + p_wt + p_wingcrd + p_tarsus + p_head + plot_layout(ncol = 3)
+```
+#Typing the plots in order of left to right then adding a column number of 3 gives the correct final plot. 
+
+
