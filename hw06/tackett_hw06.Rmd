@@ -1,11 +1,18 @@
 ---
 title: "HW 06 Part 1: Complete the sections"
-author: "your name"
+author: "Morgan Tackett"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: html_notebook
 editor_options: 
   chunk_output_type: inline
 ---
+```{r}
+library(tidyverse)
+```
+```{r}
+library(nycflights13)
+flights
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -21,17 +28,290 @@ Read [R4ds Chapter 5: Data transformation](https://r4ds.had.co.nz/transform.html
 
 ### Section 5.5: Add new variables with `mutate()`
 
-Type and run all of the examples.
 
-Pay careful attention to the useful creation functions in section 5.5.1. 
 
-Do not answer any of the questions.
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+```
+
+This creates the columns gain and speed and puts it with the previous data
+```{r}
+flights_sml <- select(flights, 
+  year:day, 
+  ends_with("delay"), 
+  distance, 
+  air_time
+)
+mutate(flights_sml,
+  gain = dep_delay - arr_delay,
+  speed = distance / air_time * 60
+)
+```
+
+This uses gain and hours to work "mutate()" and creates "gain_per_hour".
+```{r}
+mutate(flights_sml,
+  gain = dep_delay - arr_delay,
+  hours = air_time / 60,
+  gain_per_hour = gain / hours
+)
+```
+
+This makes a chart only seeing the columns gain, hours, and gain_per_hour.
+```{r}
+transmute(flights,
+  gain = dep_delay - arr_delay,
+  hours = air_time / 60,
+  gain_per_hour = gain / hours
+)
+```
+
+This makes a collum for hour and minutes from the dep_time
+```{r}
+transmute(flights,
+  dep_time,
+  hour = dep_time %/% 100,
+  minute = dep_time %% 100
+)
+```
+
+This code makes a list of leading and lagging values using "lag(x)" and "lead(x)".
+```{r}
+(x <- 1:10)
+lag(x)
+lead(x)
+```
+
+This finds the sum and  mean of "x".
+```{r}
+x
+cumsum(x)
+cummean(x)
+```
+
+This uses "min_rank()" to rank data from "y" in a increasing order and "min_rank(desc())" to rank in descending order
+```{r}
+y <- c(1, 2, 2, NA, 3, 4)
+min_rank(y)
+min_rank(desc(y))
+```
+
+This uses "row_number()", "dense_rank()", "percent_rank()", and "cume_dist()" as  ways to rank data in increasing order.
+```{r}
+row_number(y)
+dense_rank(y)
+percent_rank(y)
+cume_dist(y)
+```
 
 ### Section 5.6: Grouped summaries with `summarise()`
 
-Read and run all of the examples. Pay careful attention to the useful summary functions. Unless you really like baseball, skip the baseball part of 5.6.3.
+This uses sumarise to only show delays
+```{r}
+summarise(flights, delay = mean(dep_delay, na.rm = TRUE))
+```
+
+This picks out the important data that will be used and then makes the average delay time
+```{r}
+by_day <- group_by(flights, year, month, day)
+summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
+```
+
+This groups data by desitination, Find the mean data, filters and plots the data
+```{r}
+by_dest <- group_by(flights, dest)
+delay <- summarise(by_dest,
+  count = n(),
+  dist = mean(distance, na.rm = TRUE),
+  delay = mean(arr_delay, na.rm = TRUE)
+)
+delay <- filter(delay, count > 20, dest != "HNL")
+ggplot(data = delay, mapping = aes(x = dist, y = delay)) +
+  geom_point(aes(size = count), alpha = 1/3) +
+  geom_smooth(se = FALSE)
+```
+
+This does the exact same thing as the plot above
+```{r}
+delays <- flights %>% 
+  group_by(dest) %>% 
+  summarise(
+    count = n(),
+    dist = mean(distance, na.rm = TRUE),
+    delay = mean(arr_delay, na.rm = TRUE)
+  ) %>% 
+  filter(count > 20, dest != "HNL")
+```
+
+This shows you what happens if you miss part of the code, it gives a lot of missing data
+```{r}
+flights %>% 
+  group_by(year, month, day) %>% 
+  summarise(mean = mean(dep_delay))
+```
+
+This fixes the previous mistake by using "na.rm = TRUE"
+```{r}
+flights %>% 
+  group_by(year, month, day) %>% 
+  summarise(mean = mean(dep_delay, na.rm = TRUE))
+```
+
+This makes a data set that contains no missing flights
+```{r}
+not_cancelled <- flights %>% 
+  filter(!is.na(dep_delay), !is.na(arr_delay))
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(mean = mean(dep_delay))
+```
+
+This finds the average delay and then plots that
+```{r}
+delays <- not_cancelled %>% 
+  group_by(tailnum) %>% 
+  summarise(
+    delay = mean(arr_delay)
+  )
+ggplot(data = delays, mapping = aes(x = delay)) + 
+  geom_freqpoly(binwidth = 10)
+```
+
+THis makes the plot of average delay and flights
+```{r}
+delays <- not_cancelled %>% 
+  group_by(tailnum) %>% 
+  summarise(
+    delay = mean(arr_delay, na.rm = TRUE),
+    n = n()
+  )
+ggplot(data = delays, mapping = aes(x = n, y = delay)) + 
+  geom_point(alpha = 1/10)
+```
+
+This makes the plot a little easier to read by getting rid of unnessicary data
+```{r}
+delays %>% 
+  filter(n > 25) %>% 
+  ggplot(mapping = aes(x = n, y = delay)) + 
+    geom_point(alpha = 1/10)
+```
+
+This calculates average arr_delay
+```{r}
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(
+    avg_delay1 = mean(arr_delay),
+    avg_delay2 = mean(arr_delay[arr_delay > 0])
+  )
+```
+
+This calculates the standard deviation of distance, then orders it in decreasing order
+```{r}
+not_cancelled %>% 
+  group_by(dest) %>% 
+  summarise(distance_sd = sd(distance)) %>% 
+  arrange(desc(distance_sd))
+```
+
+This calculates the minimum and maximum not canclled. then lists min as first and max as last 
+```{r}
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(
+    first = min(dep_time),
+    last = max(dep_time)
+  )
+```
+
+This finds the first and last departure time per day
+```{r}
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(
+    first_dep = first(dep_time), 
+    last_dep = last(dep_time)
+  )
+```
+
+This find new variable R
+```{r}
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  mutate(r = min_rank(desc(dep_time))) %>% 
+  filter(r %in% range(r))
+```
+
+This makes carrier, then orders them in decreasing order
+```{r}
+not_cancelled %>% 
+  group_by(dest) %>% 
+  summarise(carriers = n_distinct(carrier)) %>% 
+  arrange(desc(carriers))
+```
+
+This gives a count of "dest".
+```{r}
+not_cancelled %>% 
+  count(dest)
+```
+
+This shows the miles the plane flew
+```{r}
+not_cancelled %>% 
+  count(tailnum, wt = distance)
+```
+
+This makes the variables named "n_early" and "hour_perc".
+```{r}
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(n_early = sum(dep_time < 500))
+not_cancelled %>% 
+  group_by(year, month, day) %>% 
+  summarise(hour_perc = mean(arr_delay > 60))
+```
+
+This focuses in on one category more effectively
+```{r}
+daily <- group_by(flights, year, month, day)
+(per_day   <- summarise(daily, flights = n()))
+(per_month <- summarise(per_day, flights = sum(flights)))
+(per_year  <- summarise(per_month, flights = sum(flights)))
+```
+
+This ungroups the data
+```{r}
+daily %>% 
+  ungroup() %>%       
+  summarise(flights = n())
+```
+
 
 ### Section 5.7: Grouped mutates (and filters)
+This finds the least popular of each category
+```{r}
+flights_sml %>% 
+  group_by(year, month, day) %>%
+  filter(rank(desc(arr_delay)) < 10)
+```
 
-Read and run all of the examples.
+This finds popular destinations
+```{r}
+popular_dests <- flights %>% 
+  group_by(dest) %>% 
+  filter(n() > 365)
+popular_dests
+```
+
+This creates"prop_delay" 
+```{r}
+popular_dests %>% 
+  filter(arr_delay > 0) %>% 
+  mutate(prop_delay = arr_delay / sum(arr_delay)) %>% 
+  select(year:day, dest, arr_delay, prop_delay)
+```
 
