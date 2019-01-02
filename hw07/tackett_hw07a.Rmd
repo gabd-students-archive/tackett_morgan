@@ -121,6 +121,7 @@ p_head
 ```{r}
 p_culmen + p_nalospi + p_wt + p_wingcrd + p_tarsus + p_head + plot_layout(ncol = 3)
 ```
+#Nalospi, Tarsus and Head seem to have outliers
 #Typing the plots in order of left to right then adding a column number of 3 gives the correct final plot. 
 
 #Figure 5

@@ -1,0 +1,251 @@
+---
+title: "Tackett_hw07b"
+author: "Morgan Tackett"
+date: "12/31/2018"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(GGally)
+library(devtools)
+library(patchwork)
+```
+```{r}
+file_path <- "~/BI485/tackett_morgan/data"
+```
+```{r}
+crabs_raw <- read.csv(file.path(file_path, "aegla_crabs.csv"))
+crabs_raw
+```
+```{r}
+crabs <- crabs_raw %>%
+select(Width, Depth, Flow, pH, TDS, Cond, N, Ni, Nt, Phos, Mg, Ca, Crab)
+```
+
+```{r}
+
+crabs1 <- 
+  crabs %>%
+  drop_na() %>%
+         mutate(row_order = 1:nrow(.))
+crabs1
+View(crabs1)
+```
+```{r}
+p_width <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Width)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())\
+p_width
+````
+
+```{r}
+p_depth <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Depth)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_depth
+````
+````{r}
+p_flow <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Flow)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_flow
+````
+```{r}
+p_pH <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = pH)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_pH
+````
+```{r}
+p_TDS <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = TDS)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_TDS
+````
+```{r}
+p_cond <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Cond)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_cond
+````
+`````{r}
+p_N <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = N)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_N
+````
+
+```{r}
+p_Ni <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Ni)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_Ni
+````
+```{r}
+p_phos <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Phos)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_phos
+````
+```{r}
+p_Mg <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Mg)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_Mg
+````
+```{r}
+p_Ca <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Ca)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_Ca
+````
+```{r}
+p_Crab <- crabs1 %>% 
+  ggplot(aes(x = row_order)) +
+  geom_boxplot(aes(y = Crab)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.y=element_blank())
+p_Crab
+````
+```{r}
+p_width + p_Depth + p_flow + p_pH + p_TDS + p_cond + p_N + p_Ni  + p_phos + p_Mg + p_Ca + p_Crab + plot_layout(ncol = 12)
+```
+```
+#Width, pH and N all have outliers but i beleive the clearest outlier is Width. The possible outliers are very far from the wiskers and when looking at the data, Width has one value of 12 while all other values are below 6. 
+```{r}
+```{r}
+p_N1 <- crabs1 %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = N)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_Ni1 <- crabs1 %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = Ni)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_Phos1 <- crabs1 %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = Phos)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_Mg1 <- crabs1 %>% 
+  ggplot(aes(y = row_order)) +
+  geom_point(aes(x = Mg)) +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+p_N1 + p_Ni1 + p_Phos1 + p_Mg1 + plot_layout(ncol = 2)
+```
+```{r}
+hWidth <- crabs1 %>%
+  ggplot() +
+  geom_histogram(aes(x = Width),
+                 binwidth = .5,
+                 boundary = 0,
+                 closed = "right",
+                 color = "black") +
+  scale_x_continuous(breaks = seq(0, 12, by = 2))
+hWidth
+```
+
+```{r}
+hDepth <- crabs1 %>%
+  ggplot() +
+  geom_histogram(aes(x = Depth),
+                 binwidth = .7,
+                 boundary = 0,
+                 closed = "right",
+                 color = "black") +
+  scale_x_continuous(breaks = seq(0, 5, by = 1))
+hDepth
+```
+
+```{r}
+hFlow <- crabs1 %>%
+  ggplot() +
+  geom_histogram(aes(x = Flow),
+                 binwidth = .05,
+                 boundary = 0,
+                 closed = "right",
+                 color = "black") +
+  scale_x_continuous(breaks = seq(0, 1, by = .1))
+hFlow
+```
+
+```{r}
+dp_Width <- crabs %>% 
+  ggplot() +
+  geom_density(aes(x = Width)) +
+  scale_x_continuous(breaks = seq(0,12, by = 2))
+dp_Width
+```
+
+```{r}
+dp_Depth <- crabs %>% 
+  ggplot() +
+  geom_density(aes(x = Depth)) +
+  scale_x_continuous(breaks = seq(0,5, by = 1))
+dp_Depth
+```
+
+```{r}
+dp_Flow <- crabs %>% 
+  ggplot() +
+  geom_density(aes(x = Flow)) +
+  scale_x_continuous(breaks = seq(0,1, by = .1))
+dp_Flow
+````
+```{r}
+histograms <- hWidth + hDepth + hFlow + plot_layout(nrow = 3)
+histograms 
+```
+
+```{r}
+densityplots <- dp_Width + dp_Depth + dp_Flow + plot_layout(nrow = 3)
+densityplots
+```
+```{r}
+histograms | densityplots 
+```
+```{r}
+crabs1 %>% ggpairs(columns = 1:14)
+```
+
