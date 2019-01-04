@@ -153,32 +153,40 @@ ggplot(data = feathers3, mapping = aes(x = new_smi, y = site)) +
   geom_boxplot()
 ```
 #Villefollet has new_smi between 24-25, nort has new_smi between 22 and 23. larochelle has new_smi between 23 and 24 and cebc has new_smi above 25
+
 ```{r}
-min_basal <- mean_basal_cort - se_basal_cort
-max_basal <- mean_basal_cort + se_basal_cort
-ggplot(data = feathers3, mapping = aes(x = site, y = basal_cort)) + 
-  geom_point() +
-  geom_errorbar(ymin = min_basal, ymax = max_basal)
+Stress_summary2 <-
+stress_summary <- feathers %>% 
+  group_by(site) %>% 
+  mutate(
+    avg_stress = mean(stress_cort, na.rm = TRUE),
+    se_cort = sd(stress_cort, na.rm = TRUE)/sqrt(NROW(feathers)),
+    ymin = avg_stress - se_cort,
+    ymax = avg_stress + se_cort)
+ggplot() +
+  geom_point(data = feathers, aes(x = site, y = stress_cort)) +
+  geom_linerange(data = stress_summary, aes(x = site, ymin = ymin, ymax = ymax))
+Stress_summary2
 ```
-```{r}
-min_stress <- mean_stress_cort - se_stress_cort
-max_stress <- mean_stress_cort + se_stress_cort
-ggplot(data = feathers3, mapping = aes(x = site, y = stress_cort)) + 
-  geom_point() +
-  geom_linerange(ymin = min_stress, ymax = max_stress)
 ```
 
 ##Honors contract
 #Modifying stress plot 3
 ```{r}
-min_stress <- mean_stress_cort - se_stress_cort
-max_stress <- mean_stress_cort + se_stress_cort
-ggplot(data = feathers3, mapping = aes(x = site, y = stress_cort)) + 
-  geom_point() +
-  geom_linerange(ymin = min_stress, ymax = max_stress)
-geom_point(data = stress_cort),
-             aes(x = site,
-                 y = stress_cort),
-             color = "maroon",
-             size = 3)
+```{r}
+ggplot() +
+  geom_point(data = Stress_summary2, aes(x = site, y = stress_cort)) +
+  stat_summary(data = feathers,
+    mapping = aes(x = site, y = stress_cort),
+    fun.y = median,
+    geom = "point",
+    size = 3,
+    color = "maroon")
+  geom_linerange(data = Stress_summary2, aes(x = site, ymin = ymin, ymax = ymax))
+```
+
+```{r}
+ggplot() +
+  geom_point(data = feathers, aes(x = site, y = stress_cort)) +
+  geom_errorbar(data = Stress_summary2, aes(x = site, ymin = ymin, ymax = ymax), size = 0.1)
 ```
