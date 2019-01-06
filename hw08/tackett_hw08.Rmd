@@ -65,4 +65,50 @@ mcclintock
 mlk_birth
 mlk_dream
 ```
+#question 2
+#mlks birthday has the incorrect year. 
+```{r}
+mlk_birth <- update(mlk_birth, year = 1929)
+mlk_birth
+```
+#Question three 
+
+```{r}
+morgan_day <- wday(morgan, label = TRUE, abbr = FALSE)
+morgan_day
+#This is correct, i was born on a thursday
+```
+#Question 4
+```{r}
+morgan2 <- update(morgan, year = 2022)
+morgan2_day <- wday(morgan2, label = TRUE, abbr = FALSE)
+morgan2_day
+```
+#Question 5
+```{r}
+morgan3 <- update(morgan, year = 2525)
+morgan3_day <- wday(morgan3, label = TRUE, abbr = FALSE)
+age = year(morgan3) - year(morgan)
+age
+morgan3_day
+```
+
+#Question 6
+```{r}
+diff_birth <- abs(anderson - ball)
+diff_birth
+# Time difference of 20499 days
+```
+#Question 7
+```{r}
+birth_to_dream <- abs(mlk_birth - mlk_dream)
+birth_to_dream
+# Time difference of 12623 days
+```
+
+
+
+
+
+
 
