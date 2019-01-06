@@ -1,0 +1,68 @@
+---
+title: "Tackett_hw06b"
+author: "Morgan Tackett"
+date: "12/30/2018"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+#Part one
+```{r}
+birth_date <- "02/20/1997"
+
+# Elizabeth Garret Anderson was the first female physician
+anderson <- "9 June 1836"
+
+# Mary Anning discovered the first complete Plesiosaur fossil, 
+# and other important Jurassic fossils
+anning <-  "1799/05/21"
+
+# Alice Augusta Ball was a chemist who developed the
+# first injectable treatment for leprosy.
+ball <- "July 24, 1892"
+
+# Sylvia Earle was the first chieft scientist at NOAA
+earle <- "August, 30 (1935)"
+
+# Rosalind Franklin used x-ray diffraction to 
+# discover DNA structure. Watson and Crick claimed credit.
+franklin <- "25th of July, 1920"
+
+# Ester Lederberg was the first to discover that viruses 
+# infect bacteria. Led to discovery of lambda bacteriophage
+lederberg <- "December 18, 1922"
+
+# Barbara McClintock discovered transposable elements (jumping genes),
+# and developed staining techniques to study chromosomes
+mcclintock <- "16061902"
+
+# Martin Luther King's birthday is coming up. Let's remember a dream
+mlk_birth <- "1/15/29"
+mlk_dream <- "1963 August 08"
+```
+#Question one
+```{r}
+morgan <- mdy(birth_date)
+anderson <- dmy(anderson)
+anning <- ymd(anning)
+ball <- mdy(ball)
+earle <- mdy(earle)
+franklin <- dmy(franklin)
+lederberg <- mdy(lederberg)
+mcclintock <- dmy(mcclintock)
+mlk_birth <- mdy(mlk_birth)
+mlk_dream <- ymd(mlk_dream)
+morgan
+anderson
+anning
+ball
+earle
+franklin
+lederberg
+mcclintock
+mlk_birth
+mlk_dream
+```
+
