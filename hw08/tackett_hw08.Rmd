@@ -105,6 +105,29 @@ birth_to_dream <- abs(mlk_birth - mlk_dream)
 birth_to_dream
 # Time difference of 12623 days
 ```
+#Question 8
+```{r}
+births <- c("1997-02-20","1836-06-09","1799-05-21","1892-07-24","1935-08-30","1920-07-25","1922-12-18","1902-06-16","1929-01-15","1963-08-08")
+names(births) <- c("morgan", "anderson", "anning", "ball", "earle", "franklin", "lederberg", "mcclintock", "mlk_birth", "mlk_dream")
+births
+```
+```{r}
+years <- year(births)
+LeapYears <- leap_year(years)
+Leaps <- years[LeapYears]
+Leaps
+```
+#Looks like anderson, ball and franklin all had birthday years that were leap years.
+
+```{r}
+all_births <- ymd(births)
+birthday <- all_births[1]
+time_difference <- morgan - all_births
+names(time_difference) <- c("morgan", "anderson", "anning", "ball", "earle", "franklin", "lederberg", "mcclintock", "king")
+sort(time_difference, decreasing = TRUE)
+```
+#In order of farthest away from my birthday to closest, it goes, anning, anderson, ball, mcclintock, franklin, lederberg, king, earle, me 
+
 
 
 
