@@ -4,6 +4,8 @@ author: "Morgan Tackett"
 date: "12/30/2018"
 output: html_document
 ---
+#Im happy to know you remember my ridiculous comments on my BI 153 tests lol
+
 ```{r}
 library(tidyverse)
 library(lubridate)
@@ -129,9 +131,154 @@ sort(time_difference, decreasing = TRUE)
 #In order of farthest away from my birthday to closest, it goes, anning, anderson, ball, mcclintock, franklin, lederberg, king, earle, me 
 
 
+#Part two
 
 
+```{r}
+file_path <-"~/BI485/tackett_morgan/data"
+lake <- read.csv(file.path(file_path, "lake_ice.csv"))
+lake
+```
 
+```{r}
+lake_ice <- filter(lake, lakecode == "DMR1")
+lake_ice
+```
+
+```{r}
+lake_ice <- select(lake_ice, iceon_year, iceon_month, iceon_day, iceoff_year, iceoff_month, iceoff_day)
+lake_ice
+```
+
+```{r}
+lakeice <- lake_ice %>% 
+  select(iceon_year, iceon_month, iceon_day, iceoff_year, iceoff_month, iceoff_day) %>% 
+  mutate(ice_on = make_date(iceon_year, iceon_month, iceon_day),
+         ice_off = make_date(iceoff_year, iceoff_month, iceoff_day))
+lakeice
+```
+
+```{r}
+lakeice2 <- lakeice %>% 
+  mutate(duration = as.numeric(ice_off - ice_on))
+lakeice2
+
+```
+
+```{r}
+ggplot(data = lakeice2) +
+  geom_line(mapping = aes(x = iceoff_year, y = duration), na.rm = TRUE)+
+    coord_cartesian(xlim = c(1850, 2013))+
+                    labs(x = "Year", y = "Ice Duration (days)")
+
+```
+#Got it!
+####Soil Carbon Dioxide
+```{r}
+soil <- read.delim(file.path(file_path, "soil_co2.txt"))
+soil
+```
+
+```{r}
+jan1 <- make_date(year = 2006, day = 1, month = 1)
+jan1
+```
+
+```{r}
+soil_co2 <- soil %>% 
+  rename(Day_number = DayN..) %>% 
+  rename(Day = Datecode..) %>% 
+  rename(Minute = Min..) %>% 
+  rename(Vegetation_sample = Veg..) %>% 
+  rename(Plot = Plot..) %>% 
+  rename(Group = Group..) %>% 
+  rename(CO2_concentration = CorrCO2..) %>% 
+  rename(Soil_type = SoilT..)
+soil
+```
+
+```{r}
+soil2 <- soil %>% 
+  mutate(Date = january + DayN..,
+         Year = year(Date),
+         Month = month(Date, label = TRUE, abbr = TRUE)) %>% 
+group_by(Year, Month)
+soil2
+```
+
+
+```{r}
+soil3 <- soil2 %>%
+  summarise(
+    mean_CO2 = mean(CorrCO2..),
+    se_Co2 = sd(CorrCO2..)/sqrt(n())
+  )
+soil3
+```
+
+```{r}
+ggplot(data = soil3) +
+  geom_col(aes(x = Month, y = mean_CO2)) +
+  geom_linerange(aes(x = Month, ymin = mean_CO2 - se_Co2, ymax = mean_CO2 + se_Co2)) +
+  facet_wrap(~ Year, ncol = 3)
+```
+
+```{r}
+ggplot(data = soil3) +
+  geom_point(aes(x = Month, y = mean_CO2)) +
+  geom_linerange(aes(x = Month, ymin = mean_CO2 - se_Co2, ymax = mean_CO2 + se_Co2)) +
+  facet_wrap(~Year, nrow = 2)
+```
+#Got it!
+#Mississippi River 
+```{r}
+file_path <-"~/BI485/tackett_morgan/data"
+thebes <- read.csv(file.path(file_path, "thebes_discharge.csv"))
+````
+````{r}
+colnames(thebes)
+thebes2 <- thebes %>%
+  gather ("X1988":"X2018", key = "Year", value = "discharge") %>% 
+  group_by(Year, Month) %>% 
+  mutate(discharge = discharge / 1000,
+         Event = case_when(
+           Year== "1993" ~ "Flood",
+           Year == "2011" ~ "Flood",
+           Year == "1988" ~ "Drought",
+           Year == "2012" ~ "Drought",
+           TRUE ~ "Normal"),
+         average_discharge = mean(discharge), na.rm = FALSE)
+thebes2
+```
+
+```{r}
+years <- thebes2 %>% 
+  filter(Event %in% c("Flood", "Drought"))
+years
+```
+
+```{r}
+plot1 <- thebes2 %>%
+  ggplot() +
+  geom_line(aes(x = Month, y = average_discharge, group = Year),
+            color = "gray70",
+            size = 0.3) +
+  labs(x = NULL,
+       y = "Discharge (cf/s, thousands)")
+plot1
+```
+
+```{r}
+thebes2 %>%
+  ggplot() +
+  geom_line(aes(x = Month, y = average_discharge, group = Year),
+            color = "gray70") +
+  labs(x = NULL,
+       y = "Discharge (cf/s, thousands)") +
+  geom_line(data = years, aes(x = Month, y = average_discharge, group = Year, color = Event))
+```
+
+#Got it!
 
 
 
