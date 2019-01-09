@@ -1,0 +1,83 @@
+---
+title: "HW09"
+author: "Morgan Tackett"
+date: "01/09/19
+output: html_notebook
+---
+```{r}
+library(tidyverse)
+library(ggthemes)
+```
+```{r}
+file_path <- "~/BI485/tackett_morgan/data"
+```
+#Tab seperated
+```{r}
+gliadin <- read_lines(file.path(file_path, "beta_gliadin.txt"))
+gliadin
+```
+```{r}
+beta_gliadin <- gliadin %>% 
+  str_replace_all("\\s", "\\") %>% 
+  str_replace_all("\\d", "\\") 
+beta_gliadin
+```
+
+```{r}
+beta_gliadin <- beta_gliadin %>% 
+  str_c(collapse = "")
+beta_gliadin
+```
+
+```{r}
+beta_gliadin <- beta_gliadin %>% 
+  str_to_upper()
+beta_gliadin
+str_length(beta_gliadin)
+```
+```{r}
+str_count(beta_gliadin, "[^ACGT]")
+```
+#23 non ATCG letters
+```{r}
+str_count(beta_gliadin, "ATG")
+str_count(beta_gliadin, "TGA|TTA")
+```
+#66 and 99 like you said!
+```{r}
+caat_box <- "CCAAT"
+tata_box <- "CTATAA"
+str_count(beta_gliadin, caat_box)
+str_count(beta_gliadin, tata_box)
+```
+#There are 4 caat boxes and one tata box. 
+```{r}
+caat_seq <- "CCAAT.{100,150}ATG"
+str_count(beta_gliadin, caat_seq)
+```
+
+```{r}
+tata_seq <- "CTATAA.{50,100}ATG"
+str_count(beta_gliadin, tata_seq)
+```
+
+```{r}
+caat_seqs_all <- str_extract_all(beta_gliadin, caat_seq, simplify = TRUE)
+str_length(caat_seqs_all)
+caat_seqs_all
+```
+
+```{r}
+str_which(caat_seqs_all, tata_box)
+promoter <- str_subset(caat_seqs_all, tata_box)
+```
+
+```{r}
+promoter
+```
+```{r}
+str_length(promoter)
+```
+#139 nucleotides in this promoter
+
+
