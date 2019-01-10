@@ -220,8 +220,121 @@ phlox%>%
   geom_point()
 ```
 #Much more teal
-
-
+```{r}
+phlox%>%
+  ggplot()+
+  geom_point(aes(x=mean_length,
+                 y=mean_width,
+                 color=syndrome_group))+
+  scale_color_brewer(type = "qual", palette = "Dark2")
+````
+```{r}
+ggplot(data = phlox) +
+  geom_point(mapping = aes(x = mean_length, y = mean_width, color = syndrome_group)) +
+  scale_color_viridis_d(option="inferno")
+```
+#i like this one a lot 
+```{r}
+phlox%>%
+  ggplot()+
+  geom_point(aes(x=mean_length,
+                 y=mean_width,
+                 color=syndrome_group))+
+  scale_color_brewer(type = "seq", palette = "Greens")
+```
+#i dont like the green at all. 
+```{r}
+phlox%>%
+  ggplot()+
+  geom_point(aes(x=mean_length,
+                 y=mean_width,
+                 color=syndrome_group))+
+  scale_color_viridis_d(option = "magma")
+```
+#i cant see the yellow very well on this. 
+```{r}
+phlox%>%
+  ggplot()+
+  geom_point(aes(x=mean_length,
+                 y=mean_width,
+                 color=syndrome_group))+
+  scale_color_viridis_d(option = "inferno")
+```
+#still cant see the yellow very well
+```{r}
+semo_palette <- c("#C8102E", "#DBE245", "#71C5E8", "#B07C57")
+phlox%>%
+  ggplot()+
+  geom_point(aes(x=mean_length,
+                 y=mean_width,
+                 shape=syndrome_group,
+                 fill=syndrome_group))+
+  scale_shape_manual(values = c(22:25))+
+  scale_fill_manual(values = semo_palette)
+```
+#This one is A-Ok
+#I think i added a few too many but oh well, i was liking the different colors.
+#part four
+```{r}
+phlox %>% 
+   ggplot() +
+  geom_point(aes(x = max_length,
+                 y = max_width,
+                 shape = syndrome_group,
+                 fill = syndrome_group),
+             size = 3) +
+  labs(shape = "Syndrome",
+       fill = "Syndrome",
+       x = "Max Length (cm)",
+       y = "Max Width (cm)") +
+  theme_bw() +
+  scale_shape_manual(values = c(21:24)) +
+  scale_fill_brewer(palette = "Pastel1") +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 12))
+```
+```{r}
+phlox %>% 
+   ggplot() +
+  geom_point(aes(x = max_length,
+                 y = max_width,
+                 shape = syndrome_group,
+                 fill = syndrome_group),
+             size = 5) +
+  labs(shape = "Syndrome",
+       fill = "Syndrome",
+       x = "Max Length (cm)",
+       y = "Max Width (cm)") +
+  theme_minimal() +
+  scale_shape_manual(values = c(21:24)) +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(axis.text = element_text(size = 8 ),
+        axis.title = element_text(size = 2))
+```
+#ugly plot 
+```{r}
+phlox %>% 
+  ggplot() +
+  geom_point(aes(x = max_length,
+                 y = max_width,
+                 color = syndrome_group)) +
+  labs(color = "Syndrome",
+       fill = "Syndrome",
+       x = "Max Length (cm)",
+       y = "Max Width (cm)") +
+  theme_bw() +
+  scale_shape_manual(values = c(20:23)) +
+  scale_color_viridis_d(option="viridis")
+```
+```{r}
+phlox%>%
+  ggplot()+
+  geom_point(aes(x=mean_length,
+                 y=mean_width,
+                 color=syndrome_group))+
+  scale_color_brewer(type = "qual", palette = "Set2")
+```
+#Pretty
 
 
 
