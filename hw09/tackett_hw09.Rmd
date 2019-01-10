@@ -11,11 +11,11 @@ library(ggthemes)
 ```{r}
 file_path <- "~/BI485/tackett_morgan/data"
 ```
-#Tab seperated
 ```{r}
 gliadin <- read_lines(file.path(file_path, "beta_gliadin.txt"))
 gliadin
 ```
+#yay genetics
 ```{r}
 beta_gliadin <- gliadin %>% 
   str_replace_all("\\s", "\\") %>% 
@@ -35,6 +35,7 @@ beta_gliadin <- beta_gliadin %>%
 beta_gliadin
 str_length(beta_gliadin)
 ```
+#all cleaned up
 ```{r}
 str_count(beta_gliadin, "[^ACGT]")
 ```
@@ -55,12 +56,12 @@ str_count(beta_gliadin, tata_box)
 caat_seq <- "CCAAT.{100,150}ATG"
 str_count(beta_gliadin, caat_seq)
 ```
-
+#there are 2 sequences that match this.
 ```{r}
 tata_seq <- "CTATAA.{50,100}ATG"
 str_count(beta_gliadin, tata_seq)
 ```
-
+#There is one sequence that matches this
 ```{r}
 caat_seqs_all <- str_extract_all(beta_gliadin, caat_seq, simplify = TRUE)
 str_length(caat_seqs_all)
@@ -79,5 +80,162 @@ promoter
 str_length(promoter)
 ```
 #139 nucleotides in this promoter
+#part 2
+```{r}
+file_path <- "~/BI485/tackett_morgan/data"
+```
+#Tab seperated
+```{r}
+ants <- read_csv(file.path(file_path, "ants.csv"))
+ants
+```
+```{r}
+ants1 <- ants %>%
+  select(-c(season, seas.code, trt, plot, sample))%>%
+  gather(key = species, value = abundance, matches("\\w\\.\\w", ignore.case = FALSE))
+ants1
+```
+```{r}
+ants2 <- ants1 %>% 
+  mutate(
+    species = str_replace(
+      species,
+      pattern = "(^[A-Z]*\\w{3})\\w{3,}\\.(\\w{4})\\w{2,}",
+      replacement = "\\1\\2"),
+    year = factor(year, levels = c("2010", "2011"), labels = c("2010", "2011"), ordered = TRUE)) %>% 
+  group_by(year, species) %>% 
+  summarise(total = sum(abundance, na.rm = TRUE)
+  )
+ants2
+```
+```{r}
+ants2%>%
+  ggplot(aes(x = reorder(species, total), y = total, group = species))+
+  geom_line(color = "gray")+
+  geom_point(aes(shape = year), size = 2)+
+  coord_flip()+
+  labs(x = NULL, y = "Total Abundance", shape = "Year")+
+  theme_minimal()
+```
+#got it
+#part 3
+```{r}
+library(tidyverse)
+library(htmlwidgets)
+```
+
+```{r}
+flowers <- read.csv(file.path(file_path, "flower_size.csv"))
+flowers
+```
+```{r}
+flower <- flowers%>%
+  filter(!is.na(Flower.number))%>%
+  select(species = Species, cor_length = Corolla.length..cm., throat_width = Corolla.width.throat..cm.)
+flower
+```
+```{r}
+flower_size <- flower%>%
+  separate(species, into = c("genus", "species"), sep = " ", extra = "drop")
+flower_size
+```
+```{r}
+flower_size2 <- flower_size%>%
+  group_by(genus, species)%>%
+  summarize(mean_length = mean(cor_length), mean_width = mean(throat_width), max_length = max(cor_length), max_width = max(throat_width))
+flower_size2
+```
+
+```{r}
+pollinator_raw <- read_csv(file.path(file_path, "flower_pollinators.csv"))
+```
+```{r}
+pollinators <- pollinator_raw %>%
+  select(-c(Color, starts_with("Source"))) %>%
+  filter(!is.na(Pollinator)) %>%
+  separate(Species, into = c("genus", "species"), sep = " ", extra = "drop")
+pollinators
+```
+```{r}
+pollinators <- pollinators %>% 
+    separate(Pollinator, into = "Syndrome", sep = " |, ")
+pollinators
+```
+#This definitely took me the longest amount of time on part 3 and ughhh
+
+
+```{r}
+phlox <- inner_join(flower_size2, pollinators, by = c("genus", "species"))
+phlox
+```
+```{r}
+phlox%>%
+  ggplot(aes(x=mean_length, y=mean_width, color=Syndrome))+
+  geom_point()
+```
+#YES
+```{r}
+phlox <- phlox%>%
+  mutate(
+    Syndrome = str_replace(Syndrome, "bee$", "bees"),
+    Syndrome = str_replace(Syndrome, "beetle$", "beetles"))
+```
+```{r}
+phlox%>%
+  ggplot(aes(x=mean_length, y=mean_width, color=Syndrome))+
+  geom_point()
+```
+#got it.
+#thanks for telling us exactly what to do on this one. 
+```{r}
+phlox%>%
+  group_by(Syndrome)%>%
+  count(Syndrome)
+```
+```{r}
+phlox <- phlox%>%
+  mutate(Syndrome = str_replace(Syndrome, "bees|beetles", "other insects"))
+phlox
+```
+
+```{r}
+phlox%>%
+  ggplot(aes(x=mean_length, y=mean_width, color=Syndrome))+
+  geom_point()
+```
+```{r}
+phlox <- phlox%>%
+  mutate(
+    syndrome_group = case_when(Syndrome == "autogamous" ~ "Autogamous",
+                               Syndrome == "bat" ~ "Mammal",
+                               Syndrome == "hummingbird" ~ "Bird", 
+                               TRUE ~ "Insect" )
+  )
+phlox
+```
+
+```{r}
+phlox%>%
+  ggplot(aes(x=mean_length, y=mean_width, color=syndrome_group))+
+  geom_point()
+```
+#Much more teal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
