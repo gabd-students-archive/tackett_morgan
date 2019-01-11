@@ -399,3 +399,49 @@ base_map +
 ```
 
 #my turn
+```{r}
+min_long <- -90
+max_long <- -58
+min_lat <- 8
+max_lat <- 28
+```
+```{r}
+file_path <-"~/BI485/tackett_morgan/data"
+blennies <- read.csv(file.path(file_path, "blennies.csv"))
+blennies
+```
+```{r}
+carib_sea <- getNOAA.bathy(lon1 = min_long,
+                           lon2 = max_long,
+                           lat1 = min_lat,
+                           lat2 = max_lat,
+                           antimeridian = FALSE,
+                           keep = TRUE)
+```
+```{r}
+base_map <- autoplot(carib_sea,
+         geom = c("raster", "contour"),
+         size = 0.1,
+         na.rm = TRUE) +
+  scale_fill_etopo(guide = FALSE)+
+  labs(x = "Longitude",
+       y = "Latitude")+
+  theme(axis.title.y = element_text(angle = 0,
+                                    vjust = 0.5))
+base_map
+```
+
+```{r}
+base_map + geom_point(data = blennies,
+                      aes(x = long,
+                          y = lat,
+                          shape = name),
+                      fill = "white",
+                      size =2.5)+
+  scale_shape_manual(values = c(21:23))+
+  labs(shape = "Species")+
+  theme(legend.position = "bottom")+
+  theme(legend.text = element_text(face = "italic"))
+
+```
+#Got it. This was by far the most fun homework assignment. 
